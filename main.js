@@ -1,14 +1,13 @@
 function isLeafOf (leaf){
-	return (leaf.Padre == this);//Change it with your own data logic
+	return (leaf.Padre == this); //Change it with your own data logic
 }
 
 function fillTree(jsonResponse, tree, root){
-	jsonResponse.filter(isLeafOf,root.Nombre).forEach( function(elem){
+	jsonResponse.filter(isLeafOf, root.Nombre).forEach( function(elem){
 		root.children.push({
 			Nombre: elem.Nombre,
 			children : []
 		});
-		
 	});
 	
 	if (root.children == 0){
@@ -16,7 +15,7 @@ function fillTree(jsonResponse, tree, root){
 	}
 	
 	root.children.forEach( function(branch){
-		branch = fillTree(jsonResponse,[],branch);
+		branch = fillTree(jsonResponse, [], branch);
 	});
 
 	tree.push(root);
